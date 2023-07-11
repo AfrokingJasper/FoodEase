@@ -1,0 +1,123 @@
+.header {
+  position: fixed;
+  display: flex;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 5rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5rem;
+}
+
+/* styling the navigations for large screen */
+
+.nav {
+}
+
+.mobile__nav {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav__links {
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: all 0.2s;
+}
+
+.nav__links:hover {
+  background-color: var(--color-secondary);
+}
+
+.active__nav {
+  padding: 0.5rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: all 0.2s;
+  background-color: var(--color-secondary);
+}
+
+/* setting theh media queries for medium screens */
+@media (max-width: 950px) {
+  .nav {
+    display: none;
+  }
+
+  .mobile__nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4rem;
+    display: flex;
+    padding: 0rem 2rem;
+    background-color: var(--color-primary);
+    justify-content: center;
+  }
+
+  .mobile__nav-list {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+  }
+
+  .mobile__nav-links {
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 2rem;
+    transition: all 0.2s;
+  }
+  .active__mobile-nav {
+    padding: 0.5rem 2rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 2rem;
+    transition: all 0.2s;
+    background-color: var(--color-secondary);
+  }
+
+  .mobile__nav-links:hover {
+    background-color: var(--color-secondary);
+  }
+}
+
+/* setting theh media queries for mobile screens */
+@media (max-width: 650px) {
+  .header {
+    padding: 1rem 2rem;
+  }
+
+  .mobile__nav {
+    padding: 0rem 0.5rem;
+  }
+
+  .mobile__nav-links {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .active__mobile-nav {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--color-secondary);
+  }
+
+  .mobile__nav-list {
+    width: 100%;
+  }
+}
