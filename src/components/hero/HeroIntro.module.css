@@ -76,4 +76,8 @@
   .hero__content {
     width: 90%;
   }
+
+  .hero__intro {
+    font-size: 1.7rem;
+  }
 }
