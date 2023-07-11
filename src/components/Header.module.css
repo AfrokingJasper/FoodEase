@@ -12,6 +12,13 @@
   padding: 1rem 5rem;
 }
 
+.logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  font-size: 1.3rem;
+}
+
 /* styling the navigations for large screen */
 
 .nav {
@@ -99,6 +106,10 @@
 @media (max-width: 650px) {
   .header {
     padding: 1rem 2rem;
+  }
+
+  .logo {
+    font-size: 1.2rem;
   }
 
   .mobile__nav {

@@ -1,15 +1,18 @@
 import React, { Fragment } from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { FaBowlFood } from "react-icons/fa6";
 
 const Header = () => {
-  // const navStyles = "nav__links"
-  // const activeNav = "nav__links "
-
   return (
     <Fragment>
       <header className={styles.header}>
-        <h2>Mamas-Recipe</h2>
+        <div className={styles.logo}>
+          <h2> Mamas-Recipe</h2>
+          <span>
+            <FaBowlFood />
+          </span>
+        </div>
 
         {/* navigations for laptop/deskyop screen */}
         <nav className={styles.nav}>

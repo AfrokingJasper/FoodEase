@@ -1,0 +1,73 @@
+/* adding a background image to the intro section */
+.background__image {
+  position: relative;
+  height: 70%;
+  background-image: url(../../assets/background-image-1.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: flex;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+/* adding a gradient overlay to the image darken the image */
+.overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+/* styling the intro content  */
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+  text-align: center;
+  z-index: 10;
+}
+
+.hero__intro {
+  font-size: 2rem;
+  color: var(--color-secondary-light);
+}
+
+.button__container {
+  display: flex;
+  gap: 1rem;
+  z-index: 10;
+}
+
+.button__container button {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  border-radius: 2rem;
+  border: none;
+  color: var(--color-white);
+  transition: all 0.2s;
+}
+
+.button__container :first-child {
+  background-color: transparent;
+  color: var(--color-white);
+  border: 1px solid var(--color-secondary);
+}
+.button__container :first-child:hover {
+  background-color: var(--color-secondary);
+}
+
+.button__container :nth-child(2) {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.button__container :nth-child(2):hover {
+  background-color: transparent;
+}
+.button__container :nth-child(2):active {
+  background-color: var(--color-primary);
+}
