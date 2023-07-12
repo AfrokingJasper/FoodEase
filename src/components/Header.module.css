@@ -24,6 +24,12 @@
 .nav {
 }
 
+.cart__item {
+  /* display: flex; */
+
+  /* align-items: baseline; */
+}
+
 .mobile__nav {
   display: none;
 }

@@ -34,7 +34,7 @@ const Header = () => {
                   isActive ? styles["active__nav"] : styles["nav__links"]
                 }
               >
-                Cart
+                Cart <span className={styles["cart__item"]}>0</span>
               </NavLink>
             </li>
             <li>
@@ -85,7 +85,7 @@ const Header = () => {
                   : styles["mobile__nav-links"]
               }
             >
-              Cart
+              Cart Cart <span className={styles["cart__item"]}>0</span>
             </NavLink>
           </li>
           <li>

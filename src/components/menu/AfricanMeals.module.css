@@ -30,7 +30,6 @@
 .meal__article:hover {
   scale: 1.03;
   color: var(--color-secondary);
-  font-weight: bold;
 }
 
 .meal__article img {
@@ -55,6 +54,9 @@
   width: 100%;
   text-align: start;
 }
+.meal__oiginal-price {
+  text-decoration: line-through;
+}
 
 /* setting media queries for medium screen */
 
@@ -67,11 +69,20 @@
 
 @media (max-width: 650px) {
   .meals__list {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+    display: flex;
+    /* grid-template-columns: 1fr;
+    grid-template-rows: 1fr; */
     /* height: 10rem; */
     /* width: 10rem; */
     overflow: scroll;
+  }
+
+  .meal__article {
+    width: 15rem;
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
+    transition: all 0.3s;
   }
 
   /* .meal__article {

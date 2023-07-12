@@ -63,8 +63,8 @@ const AfricanMeals = () => {
 
                   {/* meals price container */}
                   <div className={styles["meal__price-container"]}>
-                    <p>N3344</p>
-                    <p>N1234</p>
+                    <p className={styles["meal__price"]}>N3344</p>
+                    <p className={styles["meal__oiginal-price"]}>N1234</p>
                   </div>
                 </div>
               </article>
