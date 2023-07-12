@@ -1,0 +1,84 @@
+.african__meals-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.african__meals {
+  padding: 2rem;
+}
+
+.meals__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+.meal {
+  display: flex;
+  justify-content: center;
+}
+
+.meal__article {
+  width: 80%;
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+  transition: all 0.3s;
+}
+
+.meal__article:hover {
+  scale: 1.03;
+  color: var(--color-secondary);
+  font-weight: bold;
+}
+
+.meal__article img {
+  width: 100%;
+}
+
+.meals__title-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 0.3rem;
+  justify-content: space-between;
+}
+
+.meal__title {
+  text-align: start;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+.meal__price-container {
+  width: 100%;
+  text-align: start;
+}
+
+/* setting media queries for medium screen */
+
+@media (max-width: 950px) {
+  .meals__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+/* setting media queries for small screen */
+
+@media (max-width: 650px) {
+  .meals__list {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    /* height: 10rem; */
+    /* width: 10rem; */
+    overflow: scroll;
+  }
+
+  /* .meal__article {
+    width: 10rem;
+    display: flex;
+    gap: 0.3rem;
+    flex-direction: column;
+    transition: all 0.3s;
+  } */
+}
