@@ -1,0 +1,31 @@
+.african__meals-container {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.african__meals {
+  padding: 2rem;
+}
+
+.meals__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+/* setting media queries for medium screen */
+
+@media (max-width: 950px) {
+  .meals__list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+/* setting media queries for small screen */
+
+@media (max-width: 650px) {
+  .meals__list {
+    display: flex;
+    overflow: scroll;
+  }
+}

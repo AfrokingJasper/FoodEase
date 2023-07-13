@@ -85,7 +85,7 @@ const Header = () => {
                   : styles["mobile__nav-links"]
               }
             >
-              Cart Cart <span className={styles["cart__item"]}>0</span>
+              Cart <span className={styles["cart__item"]}>0</span>
             </NavLink>
           </li>
           <li>

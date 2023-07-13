@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Menu.module.css";
-import AfricanMeals from "./AfricanMeals";
+import AfricanMeals from "./african/AfricanMeals";
 
 const Menu = () => {
   return (
