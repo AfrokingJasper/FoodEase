@@ -78,18 +78,10 @@
   }
 
   .meal__article {
-    width: 15rem;
+    width: 20rem;
     display: flex;
     gap: 0.3rem;
     flex-direction: column;
     transition: all 0.3s;
   }
-
-  /* .meal__article {
-    width: 10rem;
-    display: flex;
-    gap: 0.3rem;
-    flex-direction: column;
-    transition: all 0.3s;
-  } */
 }
