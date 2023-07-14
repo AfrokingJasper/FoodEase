@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Hero from "../components/hero/Hero";
 import Menu from "../components/menu/Menu";
 
-const HeroPage = () => {
+const HomePage = () => {
   return (
     <Fragment>
       <Hero />
@@ -11,4 +11,4 @@ const HeroPage = () => {
   );
 };
 
-export default HeroPage;
+export default HomePage;

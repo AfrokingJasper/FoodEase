@@ -1,6 +1,7 @@
 .meal {
   display: flex;
   justify-content: center;
+  color: black;
 }
 
 .meal__article {

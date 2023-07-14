@@ -13,7 +13,7 @@ const AfricanMeals = () => {
       try {
         setLoading(true); // changing the loading state to display a loading spinner
         const response = await fetch(
-          "https://foodease-backend-default-rtdb.firebaseio.com/meals.json"
+          "https://foodease-backend-default-rtdb.firebaseio.com/meals/african.json"
         );
 
         // checking for errors
@@ -40,8 +40,6 @@ const AfricanMeals = () => {
       } catch (error) {
         setLoading(false); //changing the loading state to false to remove the loading spinner
         setErrorMessage(error.message);
-        // Handle the error here, such as displaying an error message or logging it.
-        // console.log("Error fetching meals:", error.message);
       }
     };
 
@@ -50,7 +48,7 @@ const AfricanMeals = () => {
 
   if (loading) {
     return (
-      <section /*className={styles.loadingState}*/>
+      <section>
         <p>LOADING...</p>
       </section>
     );
@@ -67,6 +65,7 @@ const AfricanMeals = () => {
   const mealsList = meals.map((meal) => (
     <MealsList
       key={meal.id}
+      id={meal.id}
       name={meal.name}
       image={meal.image}
       discount={meal.discount}
@@ -76,7 +75,7 @@ const AfricanMeals = () => {
 
   return (
     <div className={styles["african__meals-container"]}>
-      <h3>African Meals</h3>
+      <h2>African Meals</h2>
       <div className={styles["african__meals"]}>
         {!loading && meals && (
           <ul className={styles["meals__list"]}>{mealsList}</ul>

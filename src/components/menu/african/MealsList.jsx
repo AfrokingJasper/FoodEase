@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./MealsList.module.css";
+import { NavLink } from "react-router-dom";
 
 const MealsList = (props) => {
   return (
-    <li /*key={meal.id}*/ className={styles.meal}>
+    <NavLink to={`${props.id}`} className={styles.meal}>
       <article className={styles["meal__article"]}>
         <img src={props.image} alt="meal" />
 
@@ -18,7 +19,7 @@ const MealsList = (props) => {
           </div>
         </div>
       </article>
-    </li>
+    </NavLink>
   );
 };
 
