@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./Menu.module.css";
 import AfricanMeals from "./african/AfricanMeals";
+import IntercontinentalMeals from "./intercontinantal/IntercontinentalMeals";
 
 const Menu = () => {
   return (
     <section className={styles["menu__section"]}>
       <h1>FOODEASE MENU</h1>
       <AfricanMeals />
+      <IntercontinentalMeals />
     </section>
   );
 };

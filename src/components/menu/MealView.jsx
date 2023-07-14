@@ -38,8 +38,7 @@ const MealView = () => {
               </li>
               <li>Click Comfirm orders</li>
               <li>
-                Verify Your details including your adress and contact details
-                and click <strong>confirm</strong>
+                Verify Your details and click <strong>confirm</strong>
               </li>
               <li>Click Proceed to checkout</li>
             </ul>
