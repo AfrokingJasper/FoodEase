@@ -15,7 +15,7 @@ const Cart = () => {
           </div>
           <div className={styles["item__info"]}>
             <div className={styles["cart__item-title"]}>
-              <h2>Title Title</h2>
+              <h2>Title Title Title</h2>
               <p>N1500</p>
             </div>
 
@@ -37,7 +37,7 @@ const Cart = () => {
           </div>
           <div className={styles["item__info"]}>
             <div className={styles["cart__item-title"]}>
-              <h2>Title Title </h2>
+              <h2>Title Title Title</h2>
               <p>N1500</p>
             </div>
 
