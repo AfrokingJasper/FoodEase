@@ -3,6 +3,8 @@ import styles from "./MealsList.module.css";
 import { NavLink } from "react-router-dom";
 
 const MealsList = (props) => {
+  const currency = props.id.includes("a") ? "N" : "$";
+
   return (
     <NavLink to={`${props.id}`} className={styles.meal}>
       <article className={styles["meal__article"]}>
@@ -14,8 +16,14 @@ const MealsList = (props) => {
 
           {/* meals price container */}
           <div className={styles["meal__price-container"]}>
-            <p className={styles["meal__price"]}>N{props.discount}</p>
-            <p className={styles["meal__oiginal-price"]}>N{props.price}</p>
+            <p className={styles["meal__price"]}>
+              {currency}
+              {props.discount}
+            </p>
+            <p className={styles["meal__oiginal-price"]}>
+              {currency}
+              {props.price}
+            </p>
           </div>
         </div>
       </article>

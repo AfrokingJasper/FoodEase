@@ -5,8 +5,10 @@ import { json, useRouteLoaderData } from "react-router-dom";
 import styles from "./MealView.module.css";
 
 const MealView = () => {
-  const mealData = useRouteLoaderData("mealId");
+  const { mealData } = useRouteLoaderData("mealId");
+  const { mealId } = useRouteLoaderData("mealId");
   const discount = mealData.price - (mealData.price * 10) / 100;
+  const currency = mealId.includes("a") ? "N" : "$";
 
   return (
     <article className={styles["meal__view-container"]}>
@@ -22,8 +24,14 @@ const MealView = () => {
             <h2>{mealData.name}</h2>
             <p>{mealData.description}</p>
             <div>
-              <p>N{discount}</p>
-              <p className={styles["meal__oiginal-price"]}>N{mealData.price}</p>
+              <p>
+                {currency}
+                {discount}
+              </p>
+              <p className={styles["meal__oiginal-price"]}>
+                {currency}
+                {mealData.price}
+              </p>
             </div>
             <button className={styles["add__button"]}>Add to cart</button>
           </div>
@@ -62,6 +70,6 @@ export const loader = async ({ params }) => {
     throw json({ message: "could not find data" }, { status: 500 });
   } else {
     const mealData = await response.json();
-    return mealData;
+    return { mealData, mealId };
   }
 };

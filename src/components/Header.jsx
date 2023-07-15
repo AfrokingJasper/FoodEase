@@ -8,7 +8,7 @@ const Header = () => {
     <Fragment>
       <header className={styles.header}>
         <div className={styles.logo}>
-          <h2> Mamas-Recipe</h2>
+          <h2>FOODEASE</h2>
           <span>
             <FaBowlFood />
           </span>
