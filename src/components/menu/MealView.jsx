@@ -53,8 +53,9 @@ export default MealView;
 // using react-router loader function to fetch a meal data based on the id of the clicked meal
 export const loader = async ({ params }) => {
   const mealId = params.mealId;
+  const category = mealId.includes("a") ? "african" : "intercontinental";
   const response = await fetch(
-    `https://foodease-backend-default-rtdb.firebaseio.com/meals/african/${mealId}.json`
+    `https://foodease-backend-default-rtdb.firebaseio.com/meals/${category}/${mealId}.json`
   );
 
   if (!response.ok) {
