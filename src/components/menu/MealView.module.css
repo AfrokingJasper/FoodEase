@@ -63,15 +63,9 @@
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
-  /* align-items: center; */
 }
 .order__guidelines h3 {
   text-align: center;
-  /* align-items: center; */
-}
-
-.guidelines__list {
-  /* list-style: dotted; */
 }
 
 /* settting media queries for medium screen */
