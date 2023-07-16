@@ -12,6 +12,10 @@ const CartItems = ({ cartItems }) => {
     dispatch(cartAction.addToCart(cartItems));
   };
 
+  const reomveFromCartHandler = () => {
+    dispatch(cartAction.removeFromCart(name));
+  };
+
   return (
     <li className={styles["cart__item"]}>
       {/* cart item top */}
@@ -34,7 +38,7 @@ const CartItems = ({ cartItems }) => {
         </p>
 
         <div className={styles["cart__item-button"]}>
-          <button>-</button>
+          <button onClick={reomveFromCartHandler}>-</button>
           <button onClick={addToCartHander}>+</button>
         </div>
       </div>
