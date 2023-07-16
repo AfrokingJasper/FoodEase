@@ -1,14 +1,21 @@
 import React, { Suspense } from "react";
+import { useDispatch } from "react-redux";
+import { cartAction } from "../../store/cart-slice";
 import { json, useRouteLoaderData } from "react-router-dom";
 
 // importing styles
 import styles from "./MealView.module.css";
 
 const MealView = () => {
+  const dispatch = useDispatch();
   const { mealData } = useRouteLoaderData("mealId");
   const { mealId } = useRouteLoaderData("mealId");
   const discount = mealData.price - (mealData.price * 10) / 100;
   const currency = mealId.includes("a") ? "N" : "$";
+
+  const addItemHandler = () => {
+    dispatch(cartAction.addToCart(mealData));
+  };
 
   return (
     <article className={styles["meal__view-container"]}>
@@ -33,7 +40,9 @@ const MealView = () => {
                 {mealData.price}
               </p>
             </div>
-            <button className={styles["add__button"]}>Add to cart</button>
+            <button onClick={addItemHandler} className={styles["add__button"]}>
+              Add to cart
+            </button>
           </div>
 
           {/* how to order */}
