@@ -2,9 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState: { items: [], totalQuantity: 0 },
+  initialState: { items: [], totalQuantity: 0, changed: false },
   reducers: {
-    replaceCart(state, action) {},
+    replaceCart(state, action) {
+      state.items = action.payload.items;
+      state.totalQuantity = action.payload.totalQuantity;
+    },
 
     addToCart(state, action) {
       const newItem = action.payload;
@@ -12,6 +15,7 @@ const cartSlice = createSlice({
         (item) => item.name === newItem.name
       );
       state.totalQuantity++;
+      state.changed = true;
 
       if (!existingItems) {
         state.items.push({
@@ -20,13 +24,14 @@ const cartSlice = createSlice({
           discountPrice: newItem.price - (newItem.price * 10) / 100,
           price: newItem.price,
           quantity: 1,
+          totalPrice: newItem.price,
+          totalDiscountPrice: newItem.price - (newItem.price * 10) / 100,
         });
       } else {
-        existingItems.discountPrice += existingItems.discountPrice;
-        existingItems.price += existingItems.price;
+        existingItems.totalPrice += existingItems.price;
         existingItems.quantity++;
+        existingItems.totalDiscountPrice += existingItems.discountPrice;
       }
-      // console.log(newItem);
     },
 
     removeFromCart(state, action) {
@@ -41,7 +46,8 @@ const cartSlice = createSlice({
         );
       } else {
         removedItem.quantity--;
-        // removedItem.price = removedItem.price;
+        removedItem.totalPrice -= removedItem.price;
+        removedItem.totalDiscountPrice -= removedItem.discountPrice;
       }
     },
   },

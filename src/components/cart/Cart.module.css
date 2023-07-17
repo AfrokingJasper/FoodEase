@@ -73,6 +73,21 @@
   color: var(--color-white);
 }
 
+.checkout__button {
+  padding: 0.8rem 1rem;
+  border-radius: 2rem;
+  background-color: var(--color-secondary);
+  color: var(--color-white);
+  border: 1px solid var(--color-secondary);
+  transition: all 0.2s;
+  font-size: 1.1rem;
+}
+
+.checkout__button:hover {
+  background-color: transparent;
+  color: var(--color-secondary);
+}
+
 /* setting media queries for small screen */
 @media (max-width: 650px) {
   .cart__item-content {

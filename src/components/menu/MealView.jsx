@@ -8,7 +8,7 @@ import styles from "./MealView.module.css";
 
 const MealView = () => {
   const dispatch = useDispatch();
-  const { mealData } = useRouteLoaderData("mealId");
+  const { mealData } = useRouteLoaderData("mealId"); // getting the mealData that was returned from teh loader function
   const { mealId } = useRouteLoaderData("mealId");
   const discount = mealData.price - (mealData.price * 10) / 100;
   const currency = mealId.includes("a") ? "N" : "$";
@@ -73,10 +73,10 @@ export const loader = async ({ params }) => {
   const category = mealId.includes("a") ? "african" : "intercontinental";
   const response = await fetch(
     `https://foodease-backend-default-rtdb.firebaseio.com/meals/${category}/${mealId}.json`
-  );
+  ); // fetching data and assigning it to response
 
   if (!response.ok) {
-    throw json({ message: "could not find data" }, { status: 500 });
+    throw json({ message: "could not find data" }, { status: 500 }); // throws an error if the data is not recieved
   } else {
     const mealData = await response.json();
     return { mealData, mealId };

@@ -4,6 +4,9 @@ import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import Root from "./pages/Root";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { sendCartData } from "./store/cart-action";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +25,15 @@ const router = createBrowserRouter([
   },
 ]);
 function App() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
+  useEffect(() => {
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
+  }, [cart, dispatch]);
+
   return <RouterProvider router={router} />;
 }
 

@@ -6,13 +6,15 @@ import styles from "./Cart.module.css";
 
 const CartItems = ({ cartItems }) => {
   const dispatch = useDispatch();
-  const { name, image, discountPrice, price, quantity } = cartItems; // destrucuting the cart items gotten from the original cart-slice
+  const { name, image, quantity, totalPrice, totalDiscountPrice } = cartItems; // destrucuting the cart items gotten from the original cart-slice
 
   const addToCartHander = () => {
+    // adds the items passed in to the cart
     dispatch(cartAction.addToCart(cartItems));
   };
 
   const reomveFromCartHandler = () => {
+    // removed the items whose name matches the passed in parameter
     dispatch(cartAction.removeFromCart(name));
   };
 
@@ -26,8 +28,8 @@ const CartItems = ({ cartItems }) => {
         <div className={styles["cart__item-title"]}>
           <p>{name}</p>
           <div>
-            <p>N{discountPrice}</p>
-            <p style={{ textDecoration: "line-through" }}>N{price}</p>
+            <p>N{totalDiscountPrice}</p>
+            <p style={{ textDecoration: "line-through" }}>N{totalPrice}</p>
           </div>
         </div>
       </div>
