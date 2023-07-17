@@ -4,7 +4,7 @@ import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import Root from "./pages/Root";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { sendCartData } from "./store/cart-action";
+import { sendCartData, fetchCartData } from "./store/cart-action";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -28,6 +28,11 @@ function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   console.log(cart);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
   useEffect(() => {
     if (cart.changed) {
       dispatch(sendCartData(cart));
