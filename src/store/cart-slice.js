@@ -39,6 +39,7 @@ const cartSlice = createSlice({
         (item) => item.name === action.payload
       );
       state.totalQuantity--;
+      state.changed = true;
 
       if (removedItem.quantity === 1) {
         state.items = state.items.filter(

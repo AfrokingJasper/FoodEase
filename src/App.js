@@ -7,6 +7,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { sendCartData, fetchCartData } from "./store/cart-action";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import ProfilePage from "./pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -21,13 +22,13 @@ const router = createBrowserRouter([
         loader: mealLoader,
       },
       { path: "cart", element: <CartPage /> },
+      { path: "profile", element: <ProfilePage /> },
     ],
   },
 ]);
 function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
 
   useEffect(() => {
     dispatch(fetchCartData());
