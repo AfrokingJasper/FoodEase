@@ -1,6 +1,5 @@
 .profile__section {
   width: 80%;
-  /* height: 70vh; */
   margin: 10rem auto 0 auto;
   display: grid;
   gap: 1rem;
@@ -10,11 +9,14 @@
 @media (max-width: 950px) {
   .profile__section {
     width: 90%;
+    margin-bottom: 5rem;
   }
 }
 
 @media (max-width: 650px) {
   .profile__section {
     grid-template-columns: 1fr;
+    margin-top: 7rem;
+    margin-bottom: 5rem;
   }
 }
