@@ -23,7 +23,7 @@ const CartItems = ({ cartItems }) => {
       {/* cart item top */}
       <div className={styles["cart__item-content"]}>
         <div className={styles["cart__item-img"]}>
-          <img src={image} alt="img" />
+          <img src={image} alt={name} />
         </div>
         <div className={styles["cart__item-title"]}>
           <p>{name}</p>

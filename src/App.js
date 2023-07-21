@@ -8,6 +8,7 @@ import { sendCartData, fetchCartData } from "./store/cart-action";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/AuthPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       },
       { path: "cart", element: <CartPage /> },
       { path: "profile", element: <ProfilePage /> },
+      { path: "login", element: <LoginPage /> },
     ],
   },
 ]);

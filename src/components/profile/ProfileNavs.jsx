@@ -4,23 +4,32 @@ import { GiBoxUnpacking } from "react-icons/gi";
 import { MdFavoriteBorder } from "react-icons/md";
 import styles from "./ProfileNavs.module.css";
 
-const ProfileNavs = () => {
+const ProfileNavs = ({ onSetActiveNav, activeNav }) => {
   return (
     <aside className={styles["navs__container"]}>
       <ul className={styles.navs}>
-        <li>
+        <li
+          onClick={() => onSetActiveNav("account")}
+          className={activeNav === "account" ? styles.active : ""}
+        >
           <p className={styles.icons}>
             <AiOutlineUser />
           </p>
           <p>My Account</p>
         </li>
-        <li>
+        <li
+          onClick={() => onSetActiveNav("orders")}
+          className={activeNav === "orders" ? styles.active : ""}
+        >
           <p className={styles.icons}>
             <GiBoxUnpacking />
           </p>
           <p>Orders</p>
         </li>
-        <li>
+        <li
+          onClick={() => onSetActiveNav("favorites")}
+          className={activeNav === "favorites" ? styles.active : ""}
+        >
           <p className={styles.icons}>
             <MdFavoriteBorder />
           </p>
@@ -28,8 +37,18 @@ const ProfileNavs = () => {
         </li>
       </ul>
       <ul className={styles.navs}>
-        <li>Account Management</li>
-        <li>Adress Book</li>
+        <li
+          onClick={() => onSetActiveNav("management")}
+          className={activeNav === "management" ? styles.active : ""}
+        >
+          Account Management
+        </li>
+        <li
+          onClick={() => onSetActiveNav("address")}
+          className={activeNav === "address" ? styles.active : ""}
+        >
+          Adress Book
+        </li>
       </ul>
       <button className={styles["logout__btn"]}>Logout</button>
     </aside>
