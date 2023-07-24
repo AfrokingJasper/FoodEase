@@ -2,9 +2,20 @@ import React from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { GiBoxUnpacking } from "react-icons/gi";
 import { MdFavoriteBorder } from "react-icons/md";
+import { authAction } from "../../store/auth-slice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import styles from "./ProfileNavs.module.css";
 
 const ProfileNavs = ({ onSetActiveNav, activeNav }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logouthandler = () => {
+    dispatch(authAction.logout());
+    navigate("/");
+  };
+
   return (
     <aside className={styles["navs__container"]}>
       <ul className={styles.navs}>
@@ -50,7 +61,9 @@ const ProfileNavs = ({ onSetActiveNav, activeNav }) => {
           Adress Book
         </li>
       </ul>
-      <button className={styles["logout__btn"]}>Logout</button>
+      <button onClick={logouthandler} className={styles["logout__btn"]}>
+        Logout
+      </button>
     </aside>
   );
 };

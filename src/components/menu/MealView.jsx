@@ -1,19 +1,25 @@
 import React, { Suspense } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "../../store/cart-slice";
 import { json, useRouteLoaderData } from "react-router-dom";
 
 // importing styles
 import styles from "./MealView.module.css";
+import { authAction } from "../../store/auth-slice";
 
 const MealView = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const { mealData } = useRouteLoaderData("mealId"); // getting the mealData that was returned from teh loader function
-  const { mealId } = useRouteLoaderData("mealId");
   const discount = mealData.price - (mealData.price * 10) / 100;
-  const currency = mealId.includes("a") ? "N" : "$";
 
   const addItemHandler = () => {
+    if (!isLoggedIn) {
+      dispatch(
+        authAction.setError("Please Login to be able to access this feature")
+      );
+      return;
+    }
     dispatch(cartAction.addToCart(mealData));
   };
 
@@ -31,14 +37,8 @@ const MealView = () => {
             <h2>{mealData.name}</h2>
             <p>{mealData.description}</p>
             <div>
-              <p>
-                {currency}
-                {discount}
-              </p>
-              <p className={styles["meal__oiginal-price"]}>
-                {currency}
-                {mealData.price}
-              </p>
+              <p>N{discount}</p>
+              <p className={styles["meal__oiginal-price"]}>N{mealData.price}</p>
             </div>
             <button onClick={addItemHandler} className={styles["add__button"]}>
               Add to cart

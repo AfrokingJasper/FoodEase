@@ -1,8 +1,12 @@
 import React from "react";
-import styles from "./Header.module.css";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import styles from "./Header.module.css";
+
 const MobileNavs = ({ cartQuantity }) => {
+  const loggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   return (
     <nav className={styles["mobile__nav"]}>
       <ul className={styles["mobile__nav-list"]}>
@@ -42,18 +46,18 @@ const MobileNavs = ({ cartQuantity }) => {
             Profile
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive
-                ? styles["active__mobile-nav"]
-                : styles["mobile__nav-links"]
-            }
-          >
-            Login
-          </NavLink>
-        </li>
+        {!loggedIn && (
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? styles["active__nav"] : styles["nav__links"]
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

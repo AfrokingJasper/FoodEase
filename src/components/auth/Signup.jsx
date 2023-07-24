@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/auth-slice";
 import styles from "./Signup.module.css";
-import { useRef } from "react";
-import { useState } from "react";
 
 // setting up validation logic for each inputs
 const nameInputIsValid = (name) => {
@@ -20,6 +20,9 @@ const passwordIsValid = (password) =>
 
 // the onShowLogin was gotten from the Auth.jsx and it is used to swich the visiblity of the forms fromsign up to login
 const Signup = ({ onShowLogin }) => {
+  const error = useSelector((state) => state.auth.errorMessage);
+  const success = useSelector((state) => state.auth.sucessMessage);
+  const dispatch = useDispatch();
   const [inputvalidity, setInputValidity] = useState({
     name: true,
     email: true,
@@ -74,26 +77,48 @@ const Signup = ({ onShowLogin }) => {
     };
 
     const signup = async () => {
-      const response = await fetch(
-        `https://foodease-backend-default-rtdb.firebaseio.com/users.json`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            user: enteredName,
-            details: signupData,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      try {
+        const query = `?orderBy="user"&equalTo="${enteredEmail}"`;
+        const check = await fetch(
+          `https://foodease-backend-default-rtdb.firebaseio.com/users.json` +
+            query,
+          { method: "GET" }
+        );
+
+        const checkData = await check.json();
+        for (const key in checkData) {
+          if (key) {
+            console.log(key);
+            throw new Error("User Already Exist");
+          }
         }
-      );
 
-      if (!response.ok) {
-        console.log("error");
+        const response = await fetch(
+          `https://foodease-backend-default-rtdb.firebaseio.com/users.json`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              user: enteredEmail,
+              details: signupData,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Could not fetch user Data");
+        }
+
+        const data = await response.json();
+        dispatch(authAction.setError(null));
+        onShowLogin();
+        console.log(data);
+      } catch (err) {
+        console.log(err.message);
+        dispatch(authAction.setError(err.message));
       }
-
-      const data = await response.json();
-      console.log(data);
     };
     signup();
 
@@ -144,6 +169,8 @@ const Signup = ({ onShowLogin }) => {
         )}
       </div>
       <button className={styles["login__button"]}>SignUp</button>
+      {error && <em className={styles.error}>{error}</em>}
+      {success && <em /*className={styles.error}*/>{success}</em>}
       <div>
         <p>
           Already an account?

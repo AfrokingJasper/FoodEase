@@ -1,8 +1,10 @@
 import React from "react";
 import styles from "./Header.module.css";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DesktopNavs = ({ cartQuantity }) => {
+  const loggedIn = useSelector((state) => state.auth.isLoggedIn);
   // the destructured cartQuantity is coming from the header.jsx
   // it was originally gotten from the cartSlice created inside the store folder to monito state of teh cartQuantity
   return (
@@ -38,16 +40,18 @@ const DesktopNavs = ({ cartQuantity }) => {
             Profile
           </NavLink>
         </li>
-        <li>
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive ? styles["active__nav"] : styles["nav__links"]
-            }
-          >
-            Login
-          </NavLink>
-        </li>
+        {!loggedIn && (
+          <li>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? styles["active__nav"] : styles["nav__links"]
+              }
+            >
+              Login
+            </NavLink>
+          </li>
+        )}
       </ul>
     </nav>
   );

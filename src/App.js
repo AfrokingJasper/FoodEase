@@ -9,7 +9,9 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/AuthPage";
+import RequireAuth from "./components/RequireAuth";
 
+// adding routes
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,25 +24,48 @@ const router = createBrowserRouter([
         element: <MealView />,
         loader: mealLoader,
       },
-      { path: "cart", element: <CartPage /> },
-      { path: "profile", element: <ProfilePage /> },
+      {
+        path: "cart",
+        element: (
+          <RequireAuth>
+            <CartPage />
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "profile",
+        element: (
+          <RequireAuth>
+            <ProfilePage />
+          </RequireAuth>
+        ),
+      },
       { path: "login", element: <LoginPage /> },
     ],
   },
 ]);
+
+// App component
 function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
+  console.log(cart);
+  console.log(auth);
 
+  // setting a useeffect to fetch cart data when user is logged in
   useEffect(() => {
-    dispatch(fetchCartData());
-  }, [dispatch]);
+    if (auth.isLoggedIn) {
+      dispatch(fetchCartData(auth.userId)); // to pass in the userId for fetching cartdata
+    }
+  }, [dispatch, auth.userId, auth.isLoggedIn]);
 
+  // setting a useeffect to fetch crart data when the state of the cart is changed
   useEffect(() => {
     if (cart.changed) {
-      dispatch(sendCartData(cart));
+      dispatch(sendCartData(cart, auth.userId));
     }
-  }, [cart, dispatch]);
+  }, [cart, dispatch, auth.userId]);
 
   return <RouterProvider router={router} />;
 }

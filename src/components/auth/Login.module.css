@@ -25,6 +25,10 @@
   border: 1px solid gray;
 }
 
+.error {
+  color: red;
+}
+
 .login__button {
   width: 50%;
   align-self: flex-end;

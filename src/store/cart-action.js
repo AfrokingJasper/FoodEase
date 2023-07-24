@@ -1,10 +1,10 @@
 import { cartAction } from "./cart-slice";
 
-export const fetchCartData = () => {
+export const fetchCartData = (id) => {
   return async (dispatch) => {
     const fetchData = async () => {
       const response = await fetch(
-        "https://foodease-backend-default-rtdb.firebaseio.com/cart.json"
+        `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/cart.json`
       );
 
       if (!response.ok) {
@@ -29,11 +29,12 @@ export const fetchCartData = () => {
   };
 };
 
-export const sendCartData = (cart) => {
+export const sendCartData = (cart, id) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(
-        "https://foodease-backend-default-rtdb.firebaseio.com/cart.json",
+        // "https://foodease-backend-default-rtdb.firebaseio.com/cart.json",
+        `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/cart.json`,
         {
           method: "PUT",
           body: JSON.stringify({
