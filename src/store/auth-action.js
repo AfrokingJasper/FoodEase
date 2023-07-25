@@ -42,19 +42,5 @@ export const fetchUserData = (enteredEmail, enteredPassword) => {
     } catch (err) {
       dispatch(authAction.setError(err.message));
     }
-
-    //   for (const key in userData) {
-    //     const { userPassword } = userData[key].details;
-    //     console.log(userPassword === password);
-
-    //     dispatch(
-    //       authAction.login({ userName: userData[key].user, userId: key })
-    //     );
-    //     dispatch(authAction.setError(null));
-    //     console.log(userData[key].details.password);
-    //   }
-    // } catch (err) {
-    //   dispatch(authAction.setError("Hello"));
-    // }
   };
 };

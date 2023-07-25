@@ -1,3 +1,4 @@
+import { authAction } from "./auth-slice";
 import { cartAction } from "./cart-slice";
 
 export const fetchCartData = (id) => {
@@ -20,7 +21,7 @@ export const fetchCartData = (id) => {
       dispatch(
         cartAction.replaceCart({
           items: cartData.items || [],
-          totalQuantity: cartData.totalQuantity,
+          totalQuantity: cartData.totalQuantity || 0,
         })
       );
     } catch (err) {
@@ -33,7 +34,6 @@ export const sendCartData = (cart, id) => {
   return async (dispatch) => {
     const sendRequest = async () => {
       const response = await fetch(
-        // "https://foodease-backend-default-rtdb.firebaseio.com/cart.json",
         `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/cart.json`,
         {
           method: "PUT",
@@ -45,13 +45,14 @@ export const sendCartData = (cart, id) => {
       );
 
       if (!response.ok) {
-        throw new Error("seidning cartData failed");
+        throw new Error("sendiing cartData failed");
       }
     };
     try {
       await sendRequest();
     } catch (err) {
       console.log(err);
+      dispatch(authAction.setError(err.message));
     }
   };
 };

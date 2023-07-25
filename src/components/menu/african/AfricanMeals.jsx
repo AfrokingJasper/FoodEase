@@ -4,7 +4,7 @@ import MealsList from "./MealsList";
 
 const AfricanMeals = () => {
   const [meals, setMeals] = useState([]);
-  const [errorMessage, setErrorMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // fetching meals from the api,
@@ -19,12 +19,12 @@ const AfricanMeals = () => {
         // checking for errors
         if (!response.ok) {
           // setErrorMessage(true);
-          throw new Error("Failed to fetch meals.");
+          throw new Error("Failed to fetch meals");
         }
 
         const foodData = await response.json();
 
-        // storing the fetched meals in a new const (loadedMeals)
+        // looping and storing the fetched meals in a new const (loadedMeals)
         const loadedMeals = [];
         for (const keys in foodData) {
           loadedMeals.push({
@@ -37,9 +37,10 @@ const AfricanMeals = () => {
         }
         setLoading(false);
         setMeals(loadedMeals); // setting the meals state to the loadedMeals
-      } catch (error) {
+      } catch (err) {
         setLoading(false); //changing the loading state to false to remove the loading spinner
-        setErrorMessage(error.message);
+        setErrorMessage(err.message);
+        console.log(err.message);
       }
     };
 

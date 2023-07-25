@@ -108,7 +108,7 @@ const Signup = ({ onShowLogin }) => {
         );
 
         if (!response.ok) {
-          throw new Error("Could not fetch user Data");
+          throw new Error("Could not send user Data");
         }
 
         const data = await response.json();

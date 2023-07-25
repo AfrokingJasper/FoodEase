@@ -37,9 +37,9 @@ const IntercontinentalMeals = () => {
         }
         setLoading(false);
         setMeals(loadedMeals); // setting the meals state to the loadedMeals
-      } catch (error) {
+      } catch (err) {
         setLoading(false); //changing the loading state to false to remove the loading spinner
-        setErrorMessage(error.message);
+        setErrorMessage(err.message);
       }
     };
 

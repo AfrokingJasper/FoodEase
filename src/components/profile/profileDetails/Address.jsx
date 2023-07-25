@@ -1,22 +1,45 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import styles from "./AcctManagement.module.css";
-import { useRef } from "react";
 
+const nameInputIsValid = (name) => {
+  for (let i = 0; i < name.length; i++) {
+    if (name.split(" ").length === 2 && name.split(" ")[i] !== " ") {
+      return true;
+    }
+  }
+  return false;
+};
 const phoneNumberIsValid = (number) => number.length === 10;
-const postalIsValid = (postal) => postal.length === 5;
-const streetIsInValid = (street) => street.split(" ").includes(" ");
+
+const postalIsValid = (postal) =>
+  postal.split("").length >= 5 && !postal.split("").includes(" ");
+const streetIsInValid = (street) => !street.split("").includes(" ");
 
 const Address = () => {
+  const [inputvalidity, setInputValidity] = useState({
+    name: true,
+    email: true,
+    password: true,
+    confirmPassword: true,
+  });
+
+  const nameInputRef = useRef();
   const phoneInputRef = useRef();
   const postalInputRef = useRef();
   const streetInputRef = useRef();
+  const stateInputRef = useRef();
 
   const editAddressHandler = (event) => {
     event.preventDefault();
 
+    const enteredName = nameInputRef.current.value;
     const eneteredNumber = phoneInputRef.current.value;
     const enteredPostal = postalInputRef.current.vaue;
     const enteredStreet = streetInputRef.current.value;
+
+    const enteredNameIsValid = nameInputIsValid(enteredName);
+    const enteredNumberIsValid = phoneNumberIsValid(eneteredNumber);
+    const enteredPostalIsValid = postalIsValid(enteredPostal);
 
     console.log(streetIsInValid(enteredStreet));
     console.log(phoneNumberIsValid(eneteredNumber));

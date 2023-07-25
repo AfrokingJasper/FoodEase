@@ -1,7 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
+// importing styles
 import styles from "./AccountOverview.module.css";
 
 const AccountOverview = () => {
+  const username = useSelector((state) => state.auth.username);
+
   return (
     <>
       <h3>Account Overview</h3>
@@ -10,7 +15,7 @@ const AccountOverview = () => {
           <p className={styles["account"]}>Account Details</p>
           <div className={styles["account__details"]}>
             <p>Fortune Oliseyenum</p>
-            <p className={styles.email}>fortuneoliseyenum12@gmail.com</p>
+            <p className={styles.email}>{username}</p>
           </div>
         </div>
         <div className={styles["overview__details-container"]}>

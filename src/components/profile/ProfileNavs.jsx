@@ -6,6 +6,7 @@ import { authAction } from "../../store/auth-slice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styles from "./ProfileNavs.module.css";
+import { cartAction } from "../../store/cart-slice";
 
 const ProfileNavs = ({ onSetActiveNav, activeNav }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const ProfileNavs = ({ onSetActiveNav, activeNav }) => {
 
   const logouthandler = () => {
     dispatch(authAction.logout());
+    dispatch(cartAction.replaceCart({ items: [], totalQuantity: 0 }));
     navigate("/");
   };
 
