@@ -9,7 +9,12 @@ export const fetchCartData = (id) => {
       );
 
       if (!response.ok) {
-        throw new Error("error");
+        return {
+          items: [],
+          totalQuantity: 0,
+        };
+
+        // throw new Error("error");
       }
 
       const data = await response.json();
@@ -18,14 +23,19 @@ export const fetchCartData = (id) => {
 
     try {
       const cartData = await fetchData();
+
+      const items = cartData && cartData.items ? cartData.items : [];
+      const totalQuantity =
+        cartData && cartData.totalQuantity ? cartData.totalQuantity : 0;
+
       dispatch(
         cartAction.replaceCart({
-          items: cartData.items || [],
-          totalQuantity: cartData.totalQuantity || 0,
+          items,
+          totalQuantity,
         })
       );
     } catch (err) {
-      console.log(err.message);
+      console.log(err);
     }
   };
 };
