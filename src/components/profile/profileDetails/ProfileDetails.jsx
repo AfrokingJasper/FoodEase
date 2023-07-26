@@ -26,6 +26,7 @@ const ProfileDetails = ({ activeNav }) => {
         );
 
         if (!response.ok) {
+          // if response !Ok return an empty string for all adress Details
           return {
             name: "",
             phoneNumber: "",
@@ -36,9 +37,11 @@ const ProfileDetails = ({ activeNav }) => {
         }
 
         const data = await response.json();
+
+        // checking if the data exists and assigning the adressData to an empty string if it doesnt exist
         const name = data && data.name ? data.name : "";
         const phoneNumber = data && data.phoneNumber ? data.phoneNumber : "";
-        const street = data && data.sstreet ? data.sstreet : "";
+        const street = data && data.street ? data.street : "";
         const state = data && data.state ? data.state : "";
         const postal = data && data.postal ? data.postal : "";
         setAddressData({
@@ -62,7 +65,7 @@ const ProfileDetails = ({ activeNav }) => {
   const address = activeNav === "address";
   return (
     <div className={styles["details__container"]}>
-      {account && <AccountOverview />}
+      {account && <AccountOverview addressData={addressData} />}
       {orders && <Orders />}
       {favorites && <Favorites />}
       {management && <AcctManagement />}

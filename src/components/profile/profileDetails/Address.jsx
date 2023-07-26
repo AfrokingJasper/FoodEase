@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { authAction } from "../../../store/auth-slice";
 
 // importing styles
 import styles from "./AcctManagement.module.css";
 
+// setting validation logics outside the component function for all inputs
 const nameInputIsValid = (name) => {
   for (let i = 0; i < name.length; i++) {
     if (name.split(" ").length === 2 && name.split(" ")[i] !== " ") {
@@ -26,6 +28,7 @@ const streetIsInValid = (street) => {
   return false;
 };
 const stateIsInValid = (state) => state.split("").length > 1;
+// validaition logic ends here
 
 const Address = ({ addressData }) => {
   const id = useSelector((state) => state.auth.userId);
@@ -37,6 +40,7 @@ const Address = ({ addressData }) => {
     street: true,
     state: true,
   });
+  const navigate = useNavigate();
 
   const nameInputRef = useRef();
   const phoneInputRef = useRef();
@@ -53,12 +57,14 @@ const Address = ({ addressData }) => {
     const enteredStreet = streetInputRef.current.value;
     const enteredState = stateInputRef.current.value;
 
+    // assigning the result of each input valididty to a variable
     const enteredNameIsValid = nameInputIsValid(enteredName);
     const enteredNumberIsValid = phoneNumberIsValid(eneteredNumber);
     const enteredPostalIsValid = postalIsValid(enteredPostal);
     const enteredStreetIsValid = streetIsInValid(enteredStreet);
     const enteredStateIsValid = stateIsInValid(enteredState);
 
+    // setting the state of the input validity
     setInputValidity({
       name: enteredNameIsValid,
       number: enteredNumberIsValid,
@@ -67,6 +73,7 @@ const Address = ({ addressData }) => {
       state: enteredStateIsValid,
     });
 
+    // check if all inputs are valid
     const formIsValid =
       enteredNameIsValid &&
       enteredNumberIsValid &&
@@ -75,9 +82,11 @@ const Address = ({ addressData }) => {
       enteredStateIsValid;
 
     if (!formIsValid) {
+      // if all inputs are not valid the functions exits here and an error is shown in the ui
       return;
     }
 
+    // seending the request if all requirements are met
     const editData = async () => {
       try {
         const response = await fetch(
@@ -98,9 +107,10 @@ const Address = ({ addressData }) => {
           throw new Error("Could not update details");
         }
 
-        dispatch(authAction.setSuccess("Details Updated sucessfully"));
+        dispatch(authAction.setSuccess("Details Updated sucessfully")); //dispatching a success message if the request is successfull
+        navigate("/");
       } catch (err) {
-        dispatch(authAction.setError(err.message));
+        dispatch(authAction.setError(err.message)); //dispatching a success message if the request is not successfull
       }
     };
     editData();
