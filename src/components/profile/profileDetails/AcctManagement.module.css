@@ -16,6 +16,10 @@
   gap: 0.4rem;
 }
 
+.error {
+  color: red;
+}
+
 .edit__button {
   width: 10rem;
   align-self: flex-end;

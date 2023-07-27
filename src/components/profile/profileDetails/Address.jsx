@@ -15,7 +15,7 @@ const nameInputIsValid = (name) => {
   }
   return false;
 };
-const phoneNumberIsValid = (number) => number.length === 10;
+const phoneNumberIsValid = (number) => number.length >= 10;
 
 const postalIsValid = (postal) =>
   postal.length === 6 && !postal.split("").includes(" ");
@@ -130,6 +130,11 @@ const Address = ({ addressData }) => {
           placeholder="John Doe"
           defaultValue={addressData.name}
         />
+        {!inputvalidity.name && (
+          <em className={styles.error}>
+            Please enter your first name and surnname
+          </em>
+        )}
       </div>
       <div className={styles["management__input-container"]}>
         <label htmlFor="number">Mobile Number</label>
@@ -140,6 +145,11 @@ const Address = ({ addressData }) => {
           placeholder="9060955362"
           defaultValue={addressData.phoneNumber}
         />
+        {!inputvalidity.phoneNumber && (
+          <em className={styles.error}>
+            Phone number must be at least 10 characters
+          </em>
+        )}
       </div>
       <div className={styles["management__input-container"]}>
         <label htmlFor="address">Street</label>
@@ -150,6 +160,9 @@ const Address = ({ addressData }) => {
           placeholder="1 mike mba street obiaruku"
           defaultValue={addressData.street}
         />
+        {!inputvalidity.street && (
+          <em className={styles.error}>Pleasse enter a valid street</em>
+        )}
       </div>
       <div className={styles["management__input-container"]}>
         <label htmlFor="state">State</label>
@@ -160,6 +173,9 @@ const Address = ({ addressData }) => {
           placeholder="Lagos State"
           defaultValue={addressData.state}
         />
+        {!inputvalidity.state && (
+          <em className={styles.error}>Pleasse enter Your state</em>
+        )}
       </div>
       <div className={styles["management__input-container"]}>
         <label htmlFor="postal">Postal Code</label>
@@ -170,6 +186,9 @@ const Address = ({ addressData }) => {
           placeholder="11111"
           defaultValue={addressData.postal}
         />
+        {!inputvalidity.postal && (
+          <em className={styles.error}>Postal code must be 6 characters</em>
+        )}
       </div>
       <button className={styles["edit__button"]}>Edit</button>
     </form>
