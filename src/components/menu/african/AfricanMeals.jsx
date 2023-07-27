@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import styles from "./AfricanMeals.module.css";
 import MealsList from "./MealsList";
+import { authAction } from "../../../store/auth-slice";
+import { useDispatch } from "react-redux";
+
+// importing styles
+import styles from "./AfricanMeals.module.css";
 
 const AfricanMeals = () => {
   const [meals, setMeals] = useState([]);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
   // fetching meals from the api,
   useEffect(() => {
@@ -40,12 +45,16 @@ const AfricanMeals = () => {
       } catch (err) {
         setLoading(false); //changing the loading state to false to remove the loading spinner
         setErrorMessage(err.message);
-        console.log(err.message);
+        dispatch(
+          authAction.setError(
+            "Could not fetch meals! Please check you network connection"
+          )
+        ); // dispatching error to the modal
       }
     };
 
     fetchMeals();
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return (
