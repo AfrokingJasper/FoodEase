@@ -6,7 +6,7 @@ import styles from "./About.module.css";
 const About = () => {
   return (
     <section className={styles["about__section"]}>
-      <h2 className={styles["about__header"]}>About</h2>
+      <h2 className={styles["about__header"]}>About FOODEASE</h2>
       <div className={styles["about__content"]}>
         <p>
           At Foodease, we are passionate about providing you with a seamless and

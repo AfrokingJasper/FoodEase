@@ -53,11 +53,10 @@ const MealView = () => {
               <li>
                 Click <strong>CART</strong> on navigation menu
               </li>
-              <li>Click Comfirm orders</li>
-              <li>
-                Verify Your details and click <strong>confirm</strong>
-              </li>
               <li>Click Proceed to checkout</li>
+              <li>
+                Verify Your details and click <strong>Comfirm orders</strong>
+              </li>
             </ul>
           </div>
         </div>

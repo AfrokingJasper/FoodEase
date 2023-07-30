@@ -24,7 +24,6 @@ const ProfileDetails = ({ activeNav }) => {
         const response = await fetch(
           `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/adressDetails.json`
         );
-
         if (!response.ok) {
           // if response !Ok return an empty string for all adress Details
           return {
@@ -35,9 +34,7 @@ const ProfileDetails = ({ activeNav }) => {
             postal: "",
           };
         }
-
         const data = await response.json();
-
         // checking if the data exists and assigning the adressData to an empty string if it doesnt exist
         const name = data && data.name ? data.name : "";
         const phoneNumber = data && data.phoneNumber ? data.phoneNumber : "";

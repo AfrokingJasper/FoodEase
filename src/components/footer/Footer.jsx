@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Footer.module.css";
 import Cta from "./Cta";
 import { FaBowlFood } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -10,7 +11,7 @@ const Footer = () => {
       <nav className={styles["footer__nav"]}>
         <ul className={styles["footer__nav-links"]}>
           <li>
-            <a href="#some">About</a>
+            <Link to="./about">About</Link>
           </li>
           <li>
             <a href="#some">How to Order</a>

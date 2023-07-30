@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import styles from "./Cart.module.css";
 import CartItems from "./CartItems";
+import CartCheckout from "./CartCheckout";
+
+// importing styles
+import styles from "./Cart.module.css";
 
 const Cart = () => {
+  const [checkout, setCheckout] = useState(false);
+
   // getting the items inside the cart from the store
   const cartItems = useSelector((state) => state.cart.items);
   let totals = 0;
@@ -24,16 +29,23 @@ const Cart = () => {
           <CartItems key={items.name} cartItems={items} />
         ))}
       </ul>
+
       {cartItems.length > 0 && (
         <p>
           Total: <span>{totals}</span>
         </p>
       )}
-      {cartItems.length > 0 && (
-        <button className={styles["checkout__button"]}>
+      {cartItems.length > 0 && !checkout && (
+        <button
+          onClick={() => setCheckout(true)}
+          className={styles["checkout__button"]}
+        >
           Proceed to Checkout
         </button>
       )}
+
+      {/* checkout component */}
+      {checkout && <CartCheckout />}
     </section>
   );
 };

@@ -74,6 +74,8 @@
 }
 
 .checkout__button {
+  /* display: flex; */
+  text-align: center;
   padding: 0.8rem 1rem;
   border-radius: 2rem;
   background-color: var(--color-secondary);

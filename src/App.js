@@ -10,12 +10,15 @@ import { useSelector, useDispatch } from "react-redux";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/AuthPage";
 import RequireAuth from "./components/RequireAuth";
+import About from "./components/about/About";
+import ErrorPage from "./pages/ErrorPage";
 
 // adding routes
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <HomePage /> },
       {
@@ -31,6 +34,10 @@ const router = createBrowserRouter([
             <CartPage />
           </RequireAuth>
         ),
+      },
+      {
+        path: "about",
+        element: <About />,
       },
       {
         path: "profile",
@@ -50,8 +57,6 @@ function App() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const auth = useSelector((state) => state.auth);
-  console.log(cart);
-  console.log(auth);
 
   // setting a useeffect to fetch cart data when user is logged in
   useEffect(() => {

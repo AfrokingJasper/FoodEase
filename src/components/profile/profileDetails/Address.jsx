@@ -145,7 +145,7 @@ const Address = ({ addressData }) => {
           placeholder="9060955362"
           defaultValue={addressData.phoneNumber}
         />
-        {!inputvalidity.phoneNumber && (
+        {!inputvalidity.number && (
           <em className={styles.error}>
             Phone number must be at least 10 characters
           </em>
