@@ -16,13 +16,17 @@ const authSlice = createSlice({
       state.userId = action.payload.userId;
     },
 
-    logout(state, action) {
+    logout(state) {
+      // state = state;
+      // state.isLoggedIn = false;
+      // state.username = null;
+      // state.userId = "";
       state.isLoggedIn = false;
       state.username = null;
       state.userId = null;
+      state.errorMessage = null;
+      state.successMessage = null;
     },
-
-   
 
     setError(state, action) {
       state.errorMessage = action.payload;

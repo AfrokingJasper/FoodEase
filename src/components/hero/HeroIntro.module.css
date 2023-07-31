@@ -56,7 +56,7 @@
   z-index: 10;
 }
 
-.button__container button {
+.button__container a {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   border-radius: 2rem;

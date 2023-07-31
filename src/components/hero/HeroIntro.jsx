@@ -1,4 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+// importing styles
 import styles from "./HeroIntro.module.css";
 
 const HeroIntro = () => {
@@ -11,8 +14,8 @@ const HeroIntro = () => {
           easiest way to order delicious food online.
         </h1>
         <div className={styles["button__container"]}>
-          <button>Learn More</button>
-          <button>Order Now</button>
+          <Link to="/about">Learn More</Link>
+          <a href="#menu">Order Now</a>
         </div>
       </div>
     </div>

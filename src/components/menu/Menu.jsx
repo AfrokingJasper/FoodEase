@@ -5,7 +5,7 @@ import IntercontinentalMeals from "./intercontinantal/IntercontinentalMeals";
 
 const Menu = () => {
   return (
-    <section className={styles["menu__section"]}>
+    <section id="menu" className={styles["menu__section"]}>
       <h1>FOODEASE MENU</h1>
       <AfricanMeals />
       <IntercontinentalMeals />

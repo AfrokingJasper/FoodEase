@@ -16,6 +16,8 @@ const Cart = () => {
     totals += cartItems[key].totalDiscountPrice; // calculating the total price of items in the cart
   }
 
+
+
   return (
     <section className={styles["cart__section"]}>
       <h1 className={styles["cart__header"]}>Your Shopping Cart</h1>
@@ -45,7 +47,12 @@ const Cart = () => {
       )}
 
       {/* checkout component */}
-      {checkout && <CartCheckout />}
+      {checkout && (
+        <CartCheckout
+          cartItems={cartItems}
+          totals={totals}
+        />
+      )}
     </section>
   );
 };

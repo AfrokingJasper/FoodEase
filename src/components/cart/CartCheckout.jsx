@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { authAction } from "../../store/auth-slice";
+import { cartAction } from "../../store/cart-slice";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 
 // importing styles
@@ -20,8 +23,11 @@ const VerticalLine = () => {
   );
 };
 
-const CartCheckout = () => {
+const CartCheckout = ({ cartItems, totals }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const id = useSelector((state) => state.auth.userId);
+  const userName = useSelector((state) => state.auth.username);
   const [addressData, setAddressData] = useState({
     name: "",
     phoneNumber: "",
@@ -75,6 +81,54 @@ const CartCheckout = () => {
     fetchAdressData();
   }, [id]);
 
+  const confirmOrderHandler = async () => {
+    try {
+      const generalOrder = await fetch(
+        "https://foodease-backend-default-rtdb.firebaseio.com/orders.json",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            user: userName,
+            orderDetails: cartItems,
+            total: totals,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const userOrder = await fetch(
+        `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/orders.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            orderDetails: cartItems,
+            total: totals,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!generalOrder.ok || !userOrder.ok) {
+        throw new Error("Could not place orders at the moment");
+      }
+
+      dispatch(authAction.setSuccess("Order placed Successfully"));
+      dispatch(
+        cartAction.replaceCart({
+          items: [],
+          totalQuantity: 0,
+        })
+      );
+      navigate("/");
+    } catch (err) {
+      console.log(err.message);
+      dispatch(authAction.setError("Could not place orders at the moment"));
+    }
+  };
+
   return (
     <>
       {/* Delivery Adress */}
@@ -109,7 +163,12 @@ const CartCheckout = () => {
         )}
 
         {activateButton && (
-          <button className={styles["confirm__button"]}>Confirm Order</button>
+          <button
+            onClick={confirmOrderHandler}
+            className={styles["confirm__button"]}
+          >
+            Confirm Order
+          </button>
         )}
       </div>
     </>

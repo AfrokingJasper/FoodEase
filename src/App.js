@@ -52,6 +52,8 @@ const router = createBrowserRouter([
   },
 ]);
 
+let isInitial = true;
+
 // App component
 function App() {
   const dispatch = useDispatch();
@@ -67,6 +69,11 @@ function App() {
 
   // setting a useeffect to fetch crart data when the state of the cart is changed
   useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+
     if (cart.changed) {
       dispatch(sendCartData(cart, auth.userId));
     }
