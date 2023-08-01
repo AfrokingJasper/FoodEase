@@ -10,6 +10,8 @@ import styles from "./ProfileDetails.module.css";
 
 const ProfileDetails = ({ activeNav }) => {
   const id = useSelector((state) => state.auth.userId);
+  const [orderHistory, setOrderHistory] = useState([]);
+
   const [addressData, setAddressData] = useState({
     name: "",
     phoneNumber: "",
@@ -55,6 +57,32 @@ const ProfileDetails = ({ activeNav }) => {
     fetchAdressData();
   }, [id]);
 
+  // fetxhing order Details
+  useEffect(() => {
+    const fetchOrderHistory = async () => {
+      try {
+        const response = await fetch(
+          `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/orders.json`
+        );
+
+        if (!response.ok) {
+          throw new Error("Could not get order History");
+        }
+
+        const data = await response.json();
+        for (const key in data) {
+          console.log(data[key]);
+          setOrderHistory(data[key]);
+        }
+        console.log(data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    fetchOrderHistory();
+  }, [id]);
+
   const account = activeNav === "account";
   const orders = activeNav === "orders";
   const favorites = activeNav === "favorites";
@@ -63,7 +91,7 @@ const ProfileDetails = ({ activeNav }) => {
   return (
     <div className={styles["details__container"]}>
       {account && <AccountOverview addressData={addressData} />}
-      {orders && <Orders />}
+      {orders && <Orders orderData={orderHistory} />}
       {favorites && <Favorites />}
       {management && <AcctManagement />}
       {address && <Address addressData={addressData} />}

@@ -1,26 +1,28 @@
 import React from "react";
-import img from "../../../assets/background-image-1.jpg";
-// import styles from "../../cart/Cart.module.css";
+
+// importing styels
 import styles from "./Order.module.css";
 
-const Orders = () => {
+const Orders = ({ orderData }) => {
   return (
     <ul className={styles["order__container"]}>
-      <li className={styles["cart__item"]}>
-        {/* cart item top */}
-        <div className={styles["cart__item-content"]}>
-          <div className={styles["cart__item-img"]}>
-            <img src={img} alt="img" />
-          </div>
-          <div className={styles["cart__item-title"]}>
-            <p>Fufu and Egusi soup</p>
-            <div>
-              <p>N2000</p>
-              <p style={{ textDecoration: "line-through" }}>N2000</p>
+      {orderData.map((item, index) => (
+        <li key={index} className={styles["cart__item"]}>
+          {/* cart item top */}
+          <div className={styles["cart__item-content"]}>
+            <div className={styles["cart__item-img"]}>
+              <img src={item.image} alt="img" />
+            </div>
+            <div className={styles["cart__item-title"]}>
+              <p>{item.name}</p>
+              <div>
+                <p>N{item.discountPrice}</p>
+                <p style={{ textDecoration: "line-through" }}>N{item.price}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
+        </li>
+      ))}
     </ul>
   );
 };

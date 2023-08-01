@@ -100,10 +100,9 @@ const CartCheckout = ({ cartItems, totals }) => {
       const userOrder = await fetch(
         `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/orders.json`,
         {
-          method: "PUT",
+          method: "POST",
           body: JSON.stringify({
-            orderDetails: cartItems,
-            total: totals,
+            ...cartItems,
           }),
           headers: {
             "Content-Type": "application/json",

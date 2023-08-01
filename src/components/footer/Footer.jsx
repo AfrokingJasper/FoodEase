@@ -13,17 +13,25 @@ const Footer = () => {
           <li>
             <Link to="./about">About</Link>
           </li>
-          <li>
-            <a href="#some">How to Order</a>
+          <li onClick={() => alert("This link is not funtional at the moment")}>
+            <a style={{ cursor: "not-allowed" }} href="#some">
+              How to Order
+            </a>
           </li>
-          <li>
-            <a href="#some">Delivery Locations</a>
+          <li onClick={() => alert("This link is not funtional at the moment")}>
+            <a style={{ cursor: "not-allowed" }} href="#some">
+              Delivery Locations
+            </a>
           </li>
-          <li>
-            <a href="#some">FAQ</a>
+          <li onClick={() => alert("This link is not funtional at the moment")}>
+            <a style={{ cursor: "not-allowed" }} href="#some">
+              FAQ
+            </a>
           </li>
-          <li>
-            <a href="#some">Contact Us</a>
+          <li onClick={() => alert("This link is not funtional at the moment")}>
+            <a style={{ cursor: "not-allowed" }} href="#some">
+              Contact Us
+            </a>
           </li>
         </ul>
         <div className={styles.logo}>
