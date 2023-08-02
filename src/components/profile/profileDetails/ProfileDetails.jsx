@@ -10,6 +10,7 @@ import styles from "./ProfileDetails.module.css";
 
 const ProfileDetails = ({ activeNav }) => {
   const id = useSelector((state) => state.auth.userId);
+  const orderz = useSelector((state) => state.auth.orderHistory);
   const [orderHistory, setOrderHistory] = useState([]);
 
   const [addressData, setAddressData] = useState({
@@ -69,12 +70,12 @@ const ProfileDetails = ({ activeNav }) => {
           throw new Error("Could not get order History");
         }
 
+        let loadedData = [];
         const data = await response.json();
-        for (const key in data) {
-          console.log(data[key]);
-          setOrderHistory(data[key]);
+        for (const keys in data) {
+          loadedData.push(data[keys]);
         }
-        console.log(data);
+        setOrderHistory(loadedData);
       } catch (err) {
         console.log(err.message);
       }
@@ -82,6 +83,8 @@ const ProfileDetails = ({ activeNav }) => {
 
     fetchOrderHistory();
   }, [id]);
+
+  console.log(orderz);
 
   const account = activeNav === "account";
   const orders = activeNav === "orders";

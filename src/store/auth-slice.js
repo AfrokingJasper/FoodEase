@@ -6,8 +6,9 @@ const authSlice = createSlice({
     isLoggedIn: false,
     username: null,
     userId: null,
+    orderHistory: [],
     errorMessage: null,
-    sucessMessage: null,
+    successMessage: null,
   },
   reducers: {
     login(state, action) {
@@ -17,15 +18,19 @@ const authSlice = createSlice({
     },
 
     logout(state) {
-      // state = state;
-      // state.isLoggedIn = false;
-      // state.username = null;
-      // state.userId = "";
       state.isLoggedIn = false;
       state.username = null;
       state.userId = null;
       state.errorMessage = null;
       state.successMessage = null;
+    },
+
+    addToOrderHistory(state, action) {
+      const newItem = action.payload;
+      state.orderHistory.push({
+        ...newItem,
+      });
+      console.log(state.orderHistory);
     },
 
     setError(state, action) {

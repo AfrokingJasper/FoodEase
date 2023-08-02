@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // importing styels
 import styles from "./Order.module.css";
 
 const Orders = ({ orderData }) => {
+  const [orders, setOrders] = useState([]);
+
+  // console.log(orders);
   return (
     <ul className={styles["order__container"]}>
-      {orderData.map((item, index) => (
+      {/* {orders.map((item, index) => (
         <li key={index} className={styles["cart__item"]}>
-          {/* cart item top */}
           <div className={styles["cart__item-content"]}>
             <div className={styles["cart__item-img"]}>
               <img src={item.image} alt="img" />
@@ -22,9 +24,14 @@ const Orders = ({ orderData }) => {
             </div>
           </div>
         </li>
-      ))}
+      ))} */}
+      <li>
+        <h1>Coming soon</h1>
+      </li>
     </ul>
   );
 };
 
 export default Orders;
+
+//  {/* cart item top */}

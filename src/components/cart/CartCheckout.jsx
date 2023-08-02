@@ -97,10 +97,16 @@ const CartCheckout = ({ cartItems, totals }) => {
           },
         }
       );
+
+      dispatch(
+        authAction.addToOrderHistory({
+          ...cartItems,
+        })
+      );
       const userOrder = await fetch(
         `https://foodease-backend-default-rtdb.firebaseio.com/users/${id}/orders.json`,
         {
-          method: "POST",
+          method: "PUT",
           body: JSON.stringify({
             ...cartItems,
           }),
