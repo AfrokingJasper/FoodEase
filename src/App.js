@@ -14,6 +14,7 @@ import About from "./components/about/About";
 import ErrorPage from "./pages/ErrorPage";
 
 // adding routes
+// adding routes
 const router = createBrowserRouter([
   {
     path: "/",
